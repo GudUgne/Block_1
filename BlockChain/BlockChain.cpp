@@ -2,13 +2,16 @@
 #include <fstream>
 #include <string>
 #include <ctime>
+#include <sstream>
+
 
 void GeneravimasFailuPvz() {			//generuoja tik tuos du failus, kuriems reikia >1000 random simboliu, kitu ne
 
 	std::cout << "Generuoti testus? T/N" << std::endl;
 	char ats;
+	std::cin >> ats;
 	if (ats == 'T') {
-		char charset[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8',
+		char charset[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8',		//dalinai paimta is stack overflow
 		'9','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
 		'M', 'N','O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
 		'Z', 'a', 'b','c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -19,7 +22,7 @@ void GeneravimasFailuPvz() {			//generuoja tik tuos du failus, kuriems reikia >1
 		srand(time(NULL));
 		for (int y = 0; y < 1; y++)	//kiek bus eiluciu
 		{
-			for (int i = 0; i < 1005; i++){	//kiek bus simboliu eiluteje
+			for (int i = 0; i < 1005; i++) {	//kiek bus simboliu eiluteje
 				ran = std::round(0 + (double)rand() / RAND_MAX * (62 - 1)); // 62 simboliai 
 				file1 << charset[ran];
 				ran = std::round(0 + (double)rand() / RAND_MAX * (62 - 1));
@@ -46,8 +49,71 @@ void GeneravimasFailuPvz() {			//generuoja tik tuos du failus, kuriems reikia >1
 
 }
 
+void Spausdinimas( int h) {
+	if (h < 4096) {
+		while (h < 4096) {
+			h = h * 13;
+		}
+	}
+	char hexas[20];
+	sprintf_s(hexas, "%X", h);
+	std::cout << hexas;
+}
 
-void Pasirinkimas() {
+void Hashavimas(std::string duomenys) {
+	std::string hashas;
+	long long int simb = 1, temp = 1;
+
+	for (int i = 0; i < duomenys.length(); i++) {
+		simb = simb + int(duomenys[i]);	//paimamas vienas simbolis, paverciamas i ASCII
+		simb = simb * int(duomenys[i]) * (i + 1); //padauginamas is savo pozicijos ir pasirinkto betkokio skaiciaus (kad suma butu didesne)
+		while(simb > 1000000) simb = simb / 10; //pridedamas prie sumos   65535 4096
+	}
+	for (int i = 0; i < 16; i++) {
+		while (simb < 100000) {
+			simb = simb + temp;
+			simb = simb * temp;
+			temp++;
+		}
+		if (simb%100000 > 65535) {
+			Spausdinimas((int)simb % 10000);
+			simb = (simb - (simb / 10000)) / 10000;
+		}
+		else {
+			Spausdinimas((int)simb % 100000);
+			simb = (simb - (simb / 100000)) / 100000;
+		}
+	}
+	
+
+	//dabar konvertuojama i hexadecimal
+}
+
+std::string SkaitymasFailo(std::string FD) {
+	std::ifstream file(FD);
+	if (file.peek() == std::ifstream::traits_type::eof()) {
+		std::string error;
+		error = "Failas tuscias, hashavimas nevyks";
+		return error;
+	}
+	else {
+		std::string duomenys;
+		std::getline(file, duomenys);
+		return duomenys;
+	}
+	file.close();
+}
+
+std::string SkaitymasRanka() {
+	std::string duomenys;
+	std::cout << "Veskite norima hashuoti teksta:";
+	std::cin >> duomenys;
+	return duomenys;
+
+}
+
+std::string Pasirinkimas() {
+	std::string duomenys;	//duomenys gauti is failo
 	char ats;
 	std::cout << "Failas ar rasymas Ranka? F/R" << std::endl;
 	std::cin >> ats;
@@ -55,10 +121,11 @@ void Pasirinkimas() {
 		std::string FD;
 		std::cout << "Iveskite failo pavadinima:" << std::endl;
 		std::cin >> FD;
-		SkaitymasFailo(FD);
+
+		duomenys = SkaitymasFailo(FD);
 	}
 
-	else if (ats == 'R') { SkaitymasRanka(); }
+	else if (ats == 'R') { duomenys = SkaitymasRanka(); }
 
 	else {
 		std::cin.clear();
@@ -66,42 +133,17 @@ void Pasirinkimas() {
 		std::cout << "Klaida - veskite dar karta" << std::endl;
 		std::cin >> ats;
 	}
-
+	return duomenys;
 }
 
-std::string SkaitymasFailo(std::string FD) {
-
-	std::string duomenys;
-	std::ifstream file;
-	if (file.peek() == std::ifstream::traits_type::eof()) {
-		std::cout << "Failas tuscias, hashavimas nevyks" << std::endl;
-	}
-	else {
-		file.open(FD);
-		while (!file.eof()) { std::getline(file, duomenys); }
-		file.close();
-	}
-}
-
-std::string SkaitymasRanka() {
-	std::string ats;
-	std::cout << "Veskite norima hashuoti teksta:";
-	std::cin >> ats;
-	Hashavimas(ats);
-
-}
-
-std::string Hashavimas(std::string tekstas) {
-
-
-
-}
 
 
 int main() {
 
+	std::string duomenys;
 	GeneravimasFailuPvz();
-	Pasirinkimas();
+	duomenys = Pasirinkimas();
+	Hashavimas(duomenys);
 
 
 	return 0;
