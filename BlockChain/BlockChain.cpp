@@ -66,7 +66,7 @@ void Hashavimas(std::string duomenys) {
 
 	for (int i = 0; i < duomenys.length(); i++) {
 		simb = simb + int(duomenys[i]);	//paimamas vienas simbolis, paverciamas i ASCII
-		simb = simb * int(duomenys[i]) * (i + 1); //padauginamas is savo pozicijos ir pasirinkto betkokio skaiciaus (kad suma butu didesne)
+		simb = simb * int(duomenys[i]) * (i + 1); //padauginamas is savo pozicijos 
 		while(simb > 1000000) simb = simb / 10; //pridedamas prie sumos   65535 4096
 	}
 	for (int i = 0; i < 16; i++) {
