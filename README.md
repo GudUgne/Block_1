@@ -4,7 +4,7 @@
 
 ## Versijų istorija (changelog)
 
-### [v.0.1.1]() 2020-10-15
+### [v.0.1.1]() 2020-10-16
 
 - Įkelti testiniai failai, sugeneruoti tie, kurių reikalavo sąlyga (atskiru kodu);
 - Programa papildyta, kad atitiktų visus reikalavimus;
@@ -39,7 +39,7 @@
 ## Testinių failų sutapimas
 Kai yra po vieną skirtingą simbolį
 
-![Kai yra po vieną skirtingą simbolį]()
+![Kai yra po vieną skirtingą simbolį](https://github.com/GudUgne/Block_1/blob/main/Screenshot_1.png)
 
 
 Kai yra > 1000 atsitiktinių
@@ -52,6 +52,8 @@ Kai yra > 1000 simbolių, o skiriasi tik 1
 
 
 - Hashinant tuščią failą, hashas gaunamas toks pat;
+
+- Žinoma, hashinant tokį patį tekstą, hashas išlieka, o pakeitus tekstą minimaliai - hashas visiškai skiriasi;
 
 - Konstitucija:
 Hashinimas truko 0.0411979 sek.
