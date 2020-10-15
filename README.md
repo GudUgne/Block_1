@@ -39,7 +39,7 @@
 ## Testinių failų sutapimas
 Kai yra po vieną skirtingą simbolį
 
-![Kai yra po vieną skirtingą simbolį](https://github.com/GudUgne/Block_1/blob/main/Screenshot_1.png)
+![Kai yra po vieną skirtingą simbolį]()
 
 
 Kai yra > 1000 atsitiktinių
