@@ -3,7 +3,8 @@
 #include <string>
 #include <ctime>
 #include <sstream>
-
+#include <vector>
+#include <chrono>
 
 void GeneravimasFailuPvz() {			//generuoja tik tuos du failus, kuriems reikia >1000 random simboliu, kitu ne
 
@@ -16,8 +17,8 @@ void GeneravimasFailuPvz() {			//generuoja tik tuos du failus, kuriems reikia >1
 		'M', 'N','O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
 		'Z', 'a', 'b','c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
 		'm', 'n', 'o','p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-		std::ofstream file1("testas21.txt");
-		std::ofstream file2("testas22.txt");
+		std::ofstream file1("testas31.txt");
+		std::ofstream file2("testas32.txt");
 		int ran;
 		srand(time(NULL));
 		for (int y = 0; y < 1; y++)	//kiek bus eiluciu
@@ -49,71 +50,91 @@ void GeneravimasFailuPvz() {			//generuoja tik tuos du failus, kuriems reikia >1
 
 }
 
+std::ofstream FR("rez.txt");		//pasirinkto hasuoti teksto rezultatas - globalus
+
 void Spausdinimas( int h) {
 	if (h < 4096) {
 		while (h < 4096) {
-			h = h * 13;
+			h = h * 13;			//pavertimas i hexadecimal
 		}
 	}
 	char hexas[20];
 	sprintf_s(hexas, "%X", h);
-	std::cout << hexas;
+
+	FR << hexas;
 }
 
-void Hashavimas(std::string duomenys) {
+void Hashavimas(std::vector<std::string> duomenys) {
 	std::string hashas;
-	long long int simb = 1, temp = 1;
+	unsigned long long int simb = 1, temp = 1;	//temporary
 
-	for (int i = 0; i < duomenys.length(); i++) {
-		simb = simb + int(duomenys[i]);	//paimamas vienas simbolis, paverciamas i ASCII
-		simb = simb * int(duomenys[i]) * (i + 1); //padauginamas is savo pozicijos 
-		while(simb > 1000000) simb = simb / 10; //pridedamas prie sumos   65535 4096
+	std::chrono::steady_clock sc;	//pradedama skaiciuoti trukme
+	auto start = sc.now();
+
+	for (int y = 0; y < duomenys.size(); y++) {
+		for (int i = 0; i < duomenys.at(y).length(); i++) {
+			simb = simb + int(duomenys.at(y)[i]);	//paimamas vienas simbolis, paverciamas i ASCII
+			simb = simb * int(duomenys.at(y)[i]) * (i + 1); //padauginamas is savo pozicijos 
+			while (simb > 1000000) simb = simb / 10; //kad nepasiektu per daug, kad neiseitu s ribu dalinama
+		}
+		for (int i = 0; i < 16; i++) {
+			while (simb < 10000000) {
+				simb = simb + temp; // +int(duomenys[(duomenys.length() % temp) - 1]);
+				simb = simb * temp; // *int(duomenys[(duomenys.length() % temp) - 1]);
+				temp++;
+			}
+			if (simb % 100000 > 65535) {	//penki paskutiniai skaitmenys tikrinami (ffff)
+				Spausdinimas((int)simb % 10000);
+				simb = (simb - (simb / 10000)) / 10000;
+			}
+			else {
+				Spausdinimas((int)simb % 100000);
+				simb = (simb - (simb / 100000)) / 100000;
+			}
+		}
+		std::cout << y << " eilute" << std::endl;
 	}
-	for (int i = 0; i < 16; i++) {
-		while (simb < 100000) {
-			simb = simb + temp;
-			simb = simb * temp;
-			temp++;
-		}
-		if (simb%100000 > 65535) {
-			Spausdinimas((int)simb % 10000);
-			simb = (simb - (simb / 10000)) / 10000;
-		}
-		else {
-			Spausdinimas((int)simb % 100000);
-			simb = (simb - (simb / 100000)) / 100000;
-		}
-	}
+	auto end = sc.now();
+	auto time_span = static_cast<std::chrono::duration<double>>(end - start);
+
+	std::cout << "Hashavimas truko " << time_span.count()  << " sek" << std::endl;
+
+	std::cout << "Baigta" << std::endl;
 	
-
+	FR.close();
 	//dabar konvertuojama i hexadecimal
 }
 
-std::string SkaitymasFailo(std::string FD) {
+
+
+std::vector<std::string> SkaitymasFailo(std::string FD) {
 	std::ifstream file(FD);
-	if (file.peek() == std::ifstream::traits_type::eof()) {
-		std::string error;
-		error = "Failas tuscias, hashavimas nevyks";
-		return error;
+	
+	std::string eilute;
+	std::vector<std::string> visoseil;
+
+	while (true) {
+		std::getline(file, eilute);		//skaito teksta po eilute
+		visoseil.push_back(eilute);
+		if (file.eof()) break;
 	}
-	else {
-		std::string duomenys;
-		std::getline(file, duomenys);
-		return duomenys;
-	}
+
 	file.close();
+	return visoseil;
 }
 
-std::string SkaitymasRanka() {
-	std::string duomenys;
+std::vector<std::string> SkaitymasRanka() {
+	std::string temp;
+	std::vector<std::string> duomenys;
 	std::cout << "Veskite norima hashuoti teksta:";
-	std::cin >> duomenys;
+	std::cin >> temp;
+	duomenys.push_back(temp);
 	return duomenys;
 
 }
 
-std::string Pasirinkimas() {
-	std::string duomenys;	//duomenys gauti is failo
+std::vector<std::string> Pasirinkimas() {
+	std::vector<std::string> duomenys;	//duomenys gauti is failo
 	char ats;
 	std::cout << "Failas ar rasymas Ranka? F/R" << std::endl;
 	std::cin >> ats;
@@ -127,24 +148,46 @@ std::string Pasirinkimas() {
 
 	else if (ats == 'R') { duomenys = SkaitymasRanka(); }
 
-	else {
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		std::cout << "Klaida - veskite dar karta" << std::endl;
-		std::cin >> ats;
-	}
+	else {std::cout << "Klaida - neuzhashino" << std::endl;}
 	return duomenys;
 }
 
+void Lyginimas() {
+	std::string file1, file2;
+	std::cout << "Pirmo failo pav" << std::endl;
+	std::cin >> file1;
+	std::ifstream F1(file1);
+	std::cout << "Antro failo pav" << std::endl;
+	std::cin >> file2;
+	std::ifstream F2(file2);
 
+	int sutampa = 0;
+	std::string pirmas, antras;
+	F1 >> pirmas;
+	F2 >> antras;
+	F1.close();
+	F2.close();
+
+	for (int i = 0; i < 64; i++) {
+		if (pirmas[i] == antras[i]) {
+			sutampa++;
+		}
+	}
+
+	std::cout << "sutampa " << sutampa << " is 64" << std::endl;
+	
+}
 
 int main() {
 
-	std::string duomenys;
+	char atsakymas;
+	std::vector<std::string> duomenys;
 	GeneravimasFailuPvz();
 	duomenys = Pasirinkimas();
 	Hashavimas(duomenys);
-
+	std::cout << "Ar reikalingas hashu lyginimas? T/N" << std::endl;
+	std::cin >> atsakymas;
+	if (atsakymas == 'T') { Lyginimas(); }
 
 	return 0;
 }
