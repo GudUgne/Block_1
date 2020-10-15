@@ -238,7 +238,6 @@ Seimo nariais negali būti renkami asmenys, nebaigę atlikti bausmės pagal teis
 57 straipsnis
 Eiliniai Seimo rinkimai rengiami Seimo narių įgaliojimų pabaigos metais spalio mėnesio antrą sekmadienį.
 Eiliniai Seimo rinkimai, einantys po pirmalaikių Seimo rinkimų, rengiami šio straipsnio pirmojoje dalyje nurodytu laiku.
-Straipsnio pakeitimas:
 Nr. IX-2344, 2004-07-13, Žin., 2004, Nr. 111-4124 (2004-07-17)
 58 straipsnis
 Pirmalaikiai Seimo rinkimai gali būti rengiami Seimo nutarimu, priimtu ne mažiau kaip 3/5 visų Seimo narių balsų dauguma.
@@ -429,7 +428,6 @@ Nauja Vyriausybė gauna įgaliojimus veikti, kai Seimas posėdyje dalyvaujanči�
 93 straipsnis
 Pradėdami eiti savo pareigas, Ministras Pirmininkas ir ministrai Seime prisiekia būti ištikimi Lietuvos Respublikai, laikytis Konstitucijos ir įstatymų. Priesaikos tekstą nustato Vyriausybės įstatymas.
 94 straipsnis
-Lietuvos Respublikos Vyriausybė:
 1) tvarko krašto reikalus, saugo Lietuvos Respublikos teritorijos neliečiamybę, garantuoja valstybės saugumą ir viešąją tvarką;
 2) vykdo įstatymus ir Seimo nutarimus dėl įstatymų įgyvendinimo, taip pat Respublikos Prezidento dekretus;
 3) koordinuoja ministerijų ir kitų Vyriausybės įstaigų veiklą;
@@ -442,7 +440,6 @@ Lietuvos Respublikos Vyriausybė valstybės valdymo reikalus sprendžia posėdž
 Vyriausybės nutarimus pasirašo Ministras Pirmininkas ir tos srities ministras.
 96 straipsnis
 Lietuvos Respublikos Vyriausybė solidariai atsako Seimui už bendrą Vyriausybės veiklą.
-Ministrai, vadovaudami jiems pavestoms valdymo sritims, atsakingi Seimui, Respublikos Prezidentui ir tiesiogiai pavaldūs Ministrui Pirmininkui.
 97 straipsnis
 Ministras Pirmininkas atstovauja Lietuvos Respublikos Vyriausybei ir vadovauja jos veiklai.
 Kol nėra Ministro Pirmininko ar jis negali eiti savo pareigų, Respublikos Prezidentas ne ilgesniam kaip 60 dienų laikui Ministro Pirmininko teikimu paveda vienam iš ministrų jį pavaduoti, o kai tokio teikimo nėra, Respublikos Prezidentas vienam iš ministrų paveda pavaduoti Ministrą Pirmininką.
@@ -456,8 +453,6 @@ Ministras Pirmininkas ir ministrai negali būti patraukti baudžiamojon atsakomy
 101 straipsnis
 Seimo reikalavimu Vyriausybė arba atskiri ministrai turi atsiskaityti Seime už savo veiklą.
 Kai pasikeičia daugiau kaip pusė ministrų, Vyriausybė turi iš naujo gauti Seimo įgaliojimus. Priešingu atveju Vyriausybė turi atsistatydinti.
-Vyriausybė privalo atsistatydinti taip pat šiais atvejais:
-1) kai Seimas du kartus iš eilės nepritaria naujai sudarytos Vyriausybės programai;
 2) kai Seimas visų Seimo narių balsų dauguma slaptu balsavimu pareiškia nepasitikėjimą Vyriausybe ar Ministru Pirmininku;
 3) kai Ministras Pirmininkas atsistatydina ar miršta;
 4) po Seimo rinkimų, kai sudaroma nauja Vyriausybė.
