@@ -23,3 +23,14 @@
 
 
 ## Analizė
+
+
+## Pseudo kodas
+
+- paimamas simbolis iš failo/įvedamas ranka;
+- paverčiamas į int pagal ASCII;
+- padauginamas iš savo pozicijos;
+- jei pasiekia labai didelį skaičių, mažinamas, nes kitaip skaičius užeitų už kintamojo ribų;
+- vėliau skaičius yra didinamas aritmetine ir geometrine progresijomis;
+- kai pasiekia tam tikrą ribą, yra žiūrimi paskutiniai 5 skaičiai, jei jie yra didesni už 65535, iš paskutinių 4 yra verčiama į hexadecimal sistemą, kitu atveju - iš paskutinių 5;
+- viskas daroma ciklu tol, kol išspausdinama 16 grupių po 4 simbolius
