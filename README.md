@@ -48,3 +48,6 @@ Kai yra > 1000 atsitiktinių
 Kai yra > 1000 simbolių, o skiriasi tik 1
 
 ![Kai yra > 1000 simbolių, o skiriasi tik 1](https://github.com/GudUgne/Block_1/blob/main/Screenshot_3.png)
+
+
+- Hashinant tuščią failą, hashas gaunamas toks pat;
