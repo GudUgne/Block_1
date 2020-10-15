@@ -1,7 +1,5 @@
 # Block_1
 
-## Įdiegimas (Unix sistemoje)
-
 ## Versijų istorija (changelog)
 
 ### [v.0.1.1]() 2020-10-16
@@ -55,6 +53,14 @@ Kai yra > 1000 simbolių, o skiriasi tik 1
 
 - Žinoma, hashinant tokį patį tekstą, hashas išlieka, o pakeitus tekstą minimaliai - hashas visiškai skiriasi;
 
+- Generuojant įvairaus simbolių ilgių poras sutapimų nebuvo (tikrinta pasirašius atskirą mažą programėlę);
+
 - Konstitucija:
 Hashinimas truko 0.0411979 sek.
 
+
+## Porų panašumai
+
+- Sugeneravus poras ir palyginus remiantis 4 ir 5 punktų sąlyga, vienodų porų nebuvo;
+- Remiantis 6 punktu, hex lygmenyje max panašumų buvo 55, min - 0, o bendras vidurkis - 7 vienodi simboliai;
+- Binary max 238, min - 64, o kiekvienoje poroje vidutiniškai kartojasi 135 kartus;
