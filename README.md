@@ -22,7 +22,7 @@
 - Galimybė vesti norimą hašuoti tekstą ranka arba skaityti iš failo;
 
 
-## Analizė
+# Analizė
 
 
 ## Pseudo kodas
@@ -41,6 +41,7 @@ Kai yra po vieną skirtingą simbolį
 
 ![Kai yra po vieną skirtingą simbolį](https://github.com/GudUgne/Block_1/blob/main/Screenshot_1.png)
 
+
 Kai yra > 1000 atsitiktinių
 
 ![Kai yra > 1000 atsitiktinių](https://github.com/GudUgne/Block_1/blob/main/Screenshot_2.png)
@@ -53,6 +54,5 @@ Kai yra > 1000 simbolių, o skiriasi tik 1
 - Hashinant tuščią failą, hashas gaunamas toks pat;
 
 - Konstitucija:
-Negalėjau pilnai apskaičiuoti hashinimo laiko (nors tekstas hashinamas), programa tiesiog nustoja hashinti tam tikrose eilutėse, kurios tarpusavyje neturi nieko panašaus. Atsitiktinumas?
+Hashinimas truko 0.0411979 sek.
 
-Išėmus tas eilutes, kurios programai "nepatiko" (4-5 eilutes), hashinimas truko 0.475931 sek
