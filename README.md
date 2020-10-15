@@ -51,3 +51,8 @@ Kai yra > 1000 simbolių, o skiriasi tik 1
 
 
 - Hashinant tuščią failą, hashas gaunamas toks pat;
+
+- Konstitucija:
+Negalėjau pilnai apskaičiuoti hashinimo laiko (nors tekstas hashinamas), programa tiesiog nustoja hashinti tam tikrose eilutėse, kurios tarpusavyje neturi nieko panašaus. Atsitiktinumas?
+
+Išėmus tas eilutes, kurios programai "nepatiko" (4-5 eilutes), hashinimas truko 0.475931 sek
