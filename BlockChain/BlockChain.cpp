@@ -53,12 +53,16 @@ void GeneravimasFailuPvz() {			//generuoja tik tuos du failus, kuriems reikia >1
 std::ofstream FR("rez.txt");		//pasirinkto hasuoti teksto rezultatas - globalus
 
 void Spausdinimas( int h) {
-	if (h < 4096) {
-		while (h < 4096) {
-			h = h * 13;			//pavertimas i hexadecimal
-		}
-	}
+	
+	//std::cout << " eilute - 8" << std::endl;
+	if (h < 4096) {FR << '0';}
+
+	if (h < 256) {FR << '0';}
+
+	if (h < 16) {FR << '0';}
+
 	char hexas[20];
+
 	sprintf_s(hexas, "%X", h);
 
 	FR << hexas;
@@ -71,28 +75,37 @@ void Hashavimas(std::vector<std::string> duomenys) {
 	std::chrono::steady_clock sc;	//pradedama skaiciuoti trukme
 	auto start = sc.now();
 
-	for (int y = 0; y < duomenys.size(); y++) {
-		for (int i = 0; i < duomenys.at(y).length(); i++) {
+	for (unsigned int y = 0; y < duomenys.size(); y++) {
+		simb = 1, temp = 1;			//cia kad nunulintu 
+
+		for (unsigned int  i = 0; i < duomenys.at(y).length(); i++) {
+			
+
+
 			simb = simb + int(duomenys.at(y)[i]);	//paimamas vienas simbolis, paverciamas i ASCII
 			simb = simb * int(duomenys.at(y)[i]) * (i + 1); //padauginamas is savo pozicijos 
-			while (simb > 1000000) simb = simb / 10; //kad nepasiektu per daug, kad neiseitu s ribu dalinama
+			while (simb > 1000000) simb = simb / 10; //kad nepasiektu per daug, kad neiseitu is ribu dalinama
+			
 		}
 		for (int i = 0; i < 16; i++) {
 			while (simb < 10000000) {
-				simb = simb + temp; // +int(duomenys[(duomenys.length() % temp) - 1]);
-				simb = simb * temp; // *int(duomenys[(duomenys.length() % temp) - 1]);
+				simb = simb + temp; 
+				simb = simb * temp; 
 				temp++;
 			}
-			if (simb % 100000 > 65535) {	//penki paskutiniai skaitmenys tikrinami (ffff)
+
+			
+			if (simb % 100000 > 65535) {	//penki paskutiniai skaitmenys tikrinami ( 65535 - ffff)
 				Spausdinimas((int)simb % 10000);
-				simb = (simb - (simb / 10000)) / 10000;
+				simb = (simb - (simb % 10000)) / 10000;
+				
 			}
 			else {
 				Spausdinimas((int)simb % 100000);
-				simb = (simb - (simb / 100000)) / 100000;
+				simb = (simb - (simb % 100000)) / 100000;
 			}
 		}
-		std::cout << y << " eilute" << std::endl;
+		FR << std::endl;
 	}
 	auto end = sc.now();
 	auto time_span = static_cast<std::chrono::duration<double>>(end - start);
