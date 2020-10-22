@@ -2,7 +2,13 @@
 
 ## Versijų istorija (changelog)
 
-### [v.0.1.1]() 2020-10-16
+### [v.0.1.2]() 2020-10-22
+
+- Pataisytas README failas (pseudokodas);
+- Optimalesnis kodas;
+- Pataisytos papildomos programos, sukurtos generuoti / tikrinti testus;
+
+### [v.0.1.1](https://github.com/GudUgne/Block_1/releases/tag/v0.1.1) 2020-10-16
 
 - Įkelti testiniai failai, sugeneruoti tie, kurių reikalavo sąlyga (atskiru kodu);
 - Programa papildyta, kad atitiktų visus reikalavimus;
