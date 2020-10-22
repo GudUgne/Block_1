@@ -7,7 +7,7 @@
 - Pataisytas README failas (pseudokodas, stiprybės/trūkumai);
 - Ankščiau nepaminėta, kad buvo sukurtos papildomos programos tikrinti porų kolizijoms bei konvertuoti hashus į binary sistemą;
 - Pataisytos papildomos programos, tapo optimalesnės;
-- Pridėta daugiau kompentarų;
+- Pridėta daugiau komentarų;
 
 
 ### [v.0.1.1](https://github.com/GudUgne/Block_1/releases/tag/v0.1.1) 2020-10-16
