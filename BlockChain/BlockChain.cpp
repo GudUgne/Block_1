@@ -54,7 +54,7 @@ std::ofstream FR("rez.txt");		//pasirinkto hasuoti teksto rezultatas - globalus
 
 void Spausdinimas( int h) {
 	
-	//std::cout << " eilute - 8" << std::endl;
+
 	if (h < 4096) {FR << '0';}
 
 	if (h < 256) {FR << '0';}
