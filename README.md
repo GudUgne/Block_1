@@ -4,9 +4,11 @@
 
 ### [v.0.1.2]() 2020-10-22
 
-- Pataisytas README failas (pseudokodas);
-- Optimalesnis kodas;
-- Pataisytos papildomos programos, sukurtos generuoti / tikrinti testus;
+- Pataisytas README failas (pseudokodas, stiprybės/trūkumai);
+- Ankščiau nepaminėta, kad buvo sukurtos papildomos programos tikrinti porų kolizijoms bei konvertuoti hashus į binary sistemą;
+- Pataisytos papildomos programos, tapo optimalesnės;
+- Pridėta daugiau kompentarų;
+
 
 ### [v.0.1.1](https://github.com/GudUgne/Block_1/releases/tag/v0.1.1) 2020-10-16
 
@@ -31,13 +33,19 @@
 
 ## Pseudo kodas
 
-- paimamas simbolis iš failo/įvedamas ranka;
-- paverčiamas į int pagal ASCII;
-- padauginamas iš savo pozicijos;
-- jei pasiekia labai didelį skaičių, mažinamas, nes kitaip skaičius užeitų už kintamojo ribų;
-- vėliau skaičius yra didinamas aritmetine ir geometrine progresijomis;
-- kai pasiekia tam tikrą ribą, yra žiūrimi paskutiniai 5 skaičiai, jei jie yra didesni už 65535, iš paskutinių 4 yra verčiama į hexadecimal sistemą, kitu atveju - iš paskutinių 5;
-- viskas daroma ciklu tol, kol išspausdinama 16 grupių po 4 simbolius;
+- Pasirenkama - tekstas faile ar įvedimas ranka;
+
+- Prasideda ciklas cikle: pirmas ciklas ( nuo 0 eina per kiekvieną simbolį atskirai)
+- Kiekvienas simbolis paverčiamas į intą pagal ASCII;
+- Padauginamas iš savo pozicijos;
+- Jei pasiekia labai didelį skaičių, mažinamas, nes kitaip skaičius užeitų už kintamojo ribų ir tiesiog užtruktų ilgiau;
+- Antras ciklas(kviečiamas 16 kartų):
+- Skaičius yra didinamas aritmetine ir geometrine progresijomis;
+- Vyksta spausdinimas:
+- Antras ciklas sukūrė tokio dydžio skaičių, kad jo užtenka 4 arba 5 hasho simboliams sukurti;
+- Pirmas if'as tikrina ar paskutiniai 5 skaitmenys viršija 65535 (FFFF pavertus į decimal, gauname šią sumą), jei viršija, negerai, atspausdins netinkama hashą, tokiu atvėju vyksta else ir į hexą verčiami paskutiniai 4 skatmenys;
+- Jei vis dėl to 5 skaitmenys neviršija 65535, tada 5 skaitmenys konvertuojami į 4 hasho simbolius;
+- Viskas daroma ciklais tol, kol išspausdinama 16 grupių po 4 simbolius;
 
 
 ## Testinių failų sutapimas
@@ -69,4 +77,17 @@ Hashinimas truko 0.0411979 sek.
 
 - Sugeneravus poras ir palyginus remiantis 4 ir 5 punktų sąlyga, vienodų porų nebuvo;
 - Remiantis 6 punktu, hex lygmenyje max panašumų buvo 55, min - 0, o bendras vidurkis - 7 vienodi simboliai;
-- Binary max 238, min - 64, o kiekvienoje poroje vidutiniškai kartojasi 135 kartus;
+- Binary max panašumų 238, min panašumų - 64, o kiekvienoje poroje simboliai vidutiniškai kartojasi 135 kartus;
+
+
+## Kodo stiprybės
+
+- Greitas veikimas;
+- Mažai kolizijų;
+- Individualus hashavimo būdas, nesiremta jau sukurtais hash'ais;
+
+## .. bei trūkumai
+
+- Kodas nėra optimalus, naujam vartotojui gali būti sunku naudotis;
+- Kodas reikalingas analizei vykdyti nėra sujungtas su pagrindine programa;
+- Nėra exception handling;
